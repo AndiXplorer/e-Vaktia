@@ -1,0 +1,302 @@
+var datas= {
+  "24.04.2020": {
+    "syfyri": "3:50",
+    "lindja_e_diellit": "5:33",
+    "dreka": "12:36",
+    "ikindia": "16:25",
+    "akshami": "19:35",
+    "jacia": "21:17",
+    "gjatesia_e_dites": "14:02",
+    "shenime": "Dita e parë e Ramazanit, e xhuma, Hëna e re"
+  }, 
+  "25.04.2020": {
+    "syfyri": "3:47",
+    "lindja_e_diellit": "5:31",
+    "dreka": "12:36",
+    "ikindia": "16:25",
+    "akshami": "19:36",
+    "jacia": "21:18",
+    "gjatesia_e_dites": "14:05",
+    "shenime": ""
+  }, 
+  "26.04.2020": {
+    "syfyri": "3:45",
+    "lindja_e_diellit": "5:30",
+    "dreka": "12:36",
+    "ikindia": "16:26",
+    "akshami": "19:37",
+    "jacia": "21:20",
+    "gjatesia_e_dites": "14:07",
+    "shenime": ""
+  }, 
+  "27.04.2020": {
+    "syfyri": "3:43",
+    "lindja_e_diellit": "5:29",
+    "dreka": "12:36",
+    "ikindia": "16:26",
+    "akshami": "19:38",
+    "jacia": "21:22",
+    "gjatesia_e_dites": "14:09",
+    "shenime": ""
+  }, 
+  "28.04.2020": {
+    "syfyri": "3:41",
+    "lindja_e_diellit": "5:28",
+    "dreka": "12:36",
+    "ikindia": "16:27",
+    "akshami": "19:40",
+    "jacia": "21:24",
+    "gjatesia_e_dites": "14:12",
+    "shenime": ""
+  }, 
+  "29.04.2020": {
+    "syfyri": "3:39",
+    "lindja_e_diellit": "5:27",
+    "dreka": "12:36",
+    "ikindia": "16:28",
+    "akshami": "19:41",
+    "jacia": "21:25",
+    "gjatesia_e_dites": "14:14",
+    "shenime": ""
+  }, 
+  "30.04.2020": {
+    "syfyri": "3:37",
+    "lindja_e_diellit": "5:26",
+    "dreka": "12:36",
+    "ikindia": "16:29",
+    "akshami": "19:42",
+    "jacia": "21:27",
+    "gjatesia_e_dites": "14:16",
+    "shenime": ""
+  }, 
+  "01.05.2020": {
+    "syfyri": "3:35",
+    "lindja_e_diellit": "5:25",
+    "dreka": "12:36",
+    "ikindia": "16:29",
+    "akshami": "19:43",
+    "jacia": "21:18",
+    "gjatesia_e_dites": "14:18",
+    "shenime": "E xhuma"
+  }, 
+  "02.05.2020": {
+    "syfyri": "3:33",
+    "lindja_e_diellit": "5:24",
+    "dreka": "12:36",
+    "ikindia": "16:30",
+    "akshami": "19:44",
+    "jacia": "21:30",
+    "gjatesia_e_dites": "14:20",
+    "shenime": ""
+  }, 
+  "03.05.2020": {
+    "syfyri": "3:31",
+    "lindja_e_diellit": "5:22",
+    "dreka": "12:36",
+    "ikindia": "16:30",
+    "akshami": "19:45",
+    "jacia": "21:31",
+    "gjatesia_e_dites": "14:23",
+    "shenime": ""
+  }, 
+  "04.05.2020": {
+    "syfyri": "3:29",
+    "lindja_e_diellit": "5:20",
+    "dreka": "12:35",
+    "ikindia": "16:30",
+    "akshami": "19:46",
+    "jacia": "21:32",
+    "gjatesia_e_dites": "14:26",
+    "shenime": ""
+  }, 
+  "05.05.2020": {
+    "syfyri": "3:27",
+    "lindja_e_diellit": "5:18",
+    "dreka": "12:35",
+    "ikindia": "16:30",
+    "akshami": "19:46",
+    "jacia": "21:32",
+    "gjatesia_e_dites": "14:26",
+    "shenime": ""
+  }, 
+  "06.05.2020": {
+    "syfyri": "3:25",
+    "lindja_e_diellit": "5:17",
+    "dreka": "12:35",
+    "ikindia": "16:31",
+    "akshami": "19:48",
+    "jacia": "21:35",
+    "gjatesia_e_dites": "14:31",
+    "shenime": ""
+  }, 
+  "07.05.2020": {
+    "syfyri": "3:23",
+    "lindja_e_diellit": "5:15",
+    "dreka": "12:35",
+    "ikindia": "16:31",
+    "akshami": "19:49",
+    "jacia": "21:36",
+    "gjatesia_e_dites": "14:34",
+    "shenime": "Hëna e plotë"
+  }, 
+  "08.05.2020": {
+    "syfyri": "3:21",
+    "lindja_e_diellit": "5:14",
+    "dreka": "12:35",
+    "ikindia": "16:31",
+    "akshami": "19:50",
+    "jacia": "21:37",
+    "gjatesia_e_dites": "14:36",
+    "shenime": "e xhuma"
+  },
+  "09.05.2020": {
+    "syfyri": "3:19",
+    "lindja_e_diellit": "5:13",
+    "dreka": "12:35",
+    "ikindia": "16:31",
+    "akshami": "19:51",
+    "jacia": "21:38",
+    "gjatesia_e_dites": "14:38",
+    "shenime": ""
+  },
+  "10.05.2020": {
+    "syfyri": "3:17",
+    "lindja_e_diellit": "5:12",
+    "dreka": "12:35",
+    "ikindia": "16:31",
+    "akshami": "19:52",
+    "jacia": "21:40",
+    "gjatesia_e_dites": "14:40",
+    "shenime": "Dita e fitores në Bedër"
+  },
+  "11.05.2020": {
+    "syfyri": "3:15",
+    "lindja_e_diellit": "5:10",
+    "dreka": "12:34",
+    "ikindia": "16:31",
+    "akshami": "19:53",
+    "jacia": "21:41",
+    "gjatesia_e_dites": "14:43",
+    "shenime": ""
+  },
+  "12.05.2020": {
+    "syfyri": "3:13",
+    "lindja_e_diellit": "5:09",
+    "dreka": "12:34",
+    "ikindia": "16:32",
+    "akshami": "19:54",
+    "jacia": "21:43",
+    "gjatesia_e_dites": "14:45",
+    "shenime": ""
+  },
+  "13.05.2020": {
+    "syfyri": "3:11",
+    "lindja_e_diellit": "5:08",
+    "dreka": "12:34",
+    "ikindia": "16:32",
+    "akshami": "19:55",
+    "jacia": "21:45",
+    "gjatesia_e_dites": "14:47",
+    "shenime": "I'tikafi - Dita e çlirimit të Mekës"
+  },
+  "14.05.2020": {
+    "syfyri": "3:09",
+    "lindja_e_diellit": "5:07",
+    "dreka": "12:34",
+    "ikindia": "16:32",
+    "akshami": "19:56",
+    "jacia": "21:46",
+    "gjatesia_e_dites": "14:49",
+    "shenime": ""
+  },
+  "15.05.2020": {
+    "syfyri": "3:07",
+    "lindja_e_diellit": "5:06",
+    "dreka": "12:34",
+    "ikindia": "16:32",
+    "akshami": "19:57",
+    "jacia": "21:48",
+    "gjatesia_e_dites": "14:51",
+    "shenime": "e xhuma"
+  },
+  "16.05.2020": {
+    "syfyri": "3:06",
+    "lindja_e_diellit": "5:05",
+    "dreka": "12:34",
+    "ikindia": "16:33",
+    "akshami": "19:58",
+    "jacia": "21:50",
+    "gjatesia_e_dites": "14:53",
+    "shenime": ""
+  },
+  "17.05.2020": {
+    "syfyri": "3:04",
+    "lindja_e_diellit": "5:04",
+    "dreka": "12:34",
+    "ikindia": "16:33",
+    "akshami": "19:59",
+    "jacia": "21:51",
+    "gjatesia_e_dites": "14:55",
+    "shenime": ""
+  },
+  "18.05.2020": {
+    "syfyri": "3:02",
+    "lindja_e_diellit": "5:03",
+    "dreka": "12:34",
+    "ikindia": "16:34",
+    "akshami": "20:00",
+    "jacia": "21:53",
+    "gjatesia_e_dites": "14:57",
+    "shenime": ""
+  },
+  "19.05.2020": {
+    "syfyri": "3:01",
+    "lindja_e_diellit": "5:02",
+    "dreka": "12:34",
+    "ikindia": "16:34",
+    "akshami": "20:02",
+    "jacia": "21:55",
+    "gjatesia_e_dites": "15:00",
+    "shenime": "Nata e madhe e Kadrit"
+  },
+  "20.05.2020": {
+    "syfyri": "3:00",
+    "lindja_e_diellit": "5:01",
+    "dreka": "12:35",
+    "ikindia": "16:35",
+    "akshami": "20:03",
+    "jacia": "21:57",
+    "gjatesia_e_dites": "15:02",
+    "shenime": ""
+  },
+  "21.05.2020": {
+    "syfyri": "2:59",
+    "lindja_e_diellit": "5:00",
+    "dreka": "12:35",
+    "ikindia": "16:36",
+    "akshami": "20:04",
+    "jacia": "21:58",
+    "gjatesia_e_dites": "15:04",
+    "shenime": ""
+  },
+  "22.05.2020": {
+    "syfyri": "2:57",
+    "lindja_e_diellit": "4:59",
+    "dreka": "12:35",
+    "ikindia": "16:36",
+    "akshami": "20:05",
+    "jacia": "22:00",
+    "gjatesia_e_dites": "15:06",
+    "shenime": "e xhuma"
+  },
+  "23.05.2020": {
+    "syfyri": "2:56",
+    "lindja_e_diellit": "4:58",
+    "dreka": "12:35",
+    "ikindia": "16:36",
+    "akshami": "20:06",
+    "jacia": "22:02",
+    "gjatesia_e_dites": "15:08",
+    "shenime": "Nata e Fitër Bajramit"
+  }
+}

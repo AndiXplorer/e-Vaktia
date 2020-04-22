@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ramazani</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/hover.css">
+  <script src="./datas/data.json" type="text/javascript"></script>
+  <script type="text/javascript" src="./js/moment-with-locales.min.js"></script>
+</head>
+<body>
+  <style>
+    tr#strong * {
+      font-weight: bold;
+    }
+  </style>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">
+      
+    <img style="height: 60px" class="responsive-img" src="logo1.png">
+        
+    </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Na Kontakto</a></li>
+      </ul>
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#">Na Kontakto</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <h3 class="center orange-text">Koha e Ramazanit</h3>
+
+
+    </div>
+  </div>
+  <table id="today" style="margin-bottom: 50px;">
+    <thead>
+      <tr>
+        <td><strong>Data</strong></td>
+        <td><strong>Muaji</strong></td>
+        <td><strong>Dita</strong></td>
+        <td><strong>Syfyri</strong></td>
+        <td><strong>Lindja e Diellit</strong></td>
+        <td><strong>Dreka</strong></td>
+        <td><strong>Ikindia</strong></td>
+        <td><strong>Akshami</strong></td>
+        <td><strong>Jacia</strong></td>
+        <td><strong>Gjatësia e ditës</strong></td>
+        <td><strong>Shënime</strong></td>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <div id="fader" style="display: none;">
+  <table id="tedhenat" class="striped responsive-table">
+    <thead>
+      <tr>
+        <td><strong>Data</strong></td>
+        <td><strong>Muaji</strong></td>
+        <td><strong>Dita</strong></td>
+        <td><strong>Syfyri</strong></td>
+        <td><strong>Lindja e Diellit</strong></td>
+        <td><strong>Dreka</strong></td>
+        <td><strong>Ikindia</strong></td>
+        <td><strong>Akshami</strong></td>
+        <td><strong>Jacia</strong></td>
+        <td><strong>Gjatësia e ditës</strong></td>
+        <td><strong>Shënime</strong></td>
+      </tr>
+    </thead>
+    <tbody>
+    <tr style="display: none;"><td colspan="10"></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="center">
+    <a onclick="$('#fader').show(); $('#today').hide(); $(this).hide();" class="waves-effect waves-light btn-large">Shiko me shume</a>    
+  </div>
+  <p class="center">Diferenca e kohës, kur dielli perëndon më herët ose më vonë, për shkak të ndryshimit të gjerësisë gjeografike ose lartësisë mbidetare, është për qytetet: <br/>Ferizaj: -1min; Gjilani: -1; Presheva: -2; Prishtina: -1; Podujeva: -1; Sharri: +2 dhe Vushtria: -1 min.<br/><b>Dita e parë e Fitër-Bajramit, e Diel 24 Maj 2020 | Namazi i Fitër-Bajramit falet në orën 5:42</b> </p>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script type="text/javascript">
+    function getTeDhenatByDay(data){
+      if(typeof(datas[data]) !== "object"){
+        console.log("Nuk kemi te dhena per kete date.");
+      }
+      return datas[data];
+    }
+    function getRows(data){
+      var teDhenat = getTeDhenatByDay(data);
+      try {
+      return  "<td>" + moment(data, "DD-MM-YYYY").locale('sq').format('DD') + "</td>" + 
+              "<td>" + moment(data, "DD-MM-YYYY").locale('sq').format('MMMM') + "</td>" + 
+              "<td>" + moment(data, "DD-MM-YYYY").locale('sq').format('dddd') + "</td>" + 
+              "<td>" + teDhenat["syfyri"] + "</td>" + 
+              "<td>" + teDhenat["lindja_e_diellit"] + "</td>" + 
+              "<td>" + teDhenat["dreka"] + "</td>" + 
+              "<td>" + teDhenat["ikindia"] + "</td>" + 
+              "<td>" + teDhenat["akshami"] + "</td>" + 
+              "<td>" + teDhenat["jacia"] + "</td>" + 
+              "<td>" + teDhenat["gjatesia_e_dites"] + "</td>" + 
+              "<td>" + teDhenat["shenime"] + "</td>";
+              }
+              catch (e){
+                return;
+              }
+    };
+
+    $(document).ready(function(){
+
+      for(let i = 0; i < Object.keys(datas).length; i++) {
+          if(moment().format("DD-MM-YYYY") == moment(Object.keys(datas)[i], "DD-MM-YYYY").format("DD-MM-YYYY")){
+            $('#tedhenat tr:last').after('<tr id="strong">' + getRows(Object.keys(datas)[i]) + '</tr>');
+            $('#today tbody').append('<tr>' + getRows(Object.keys(datas)[i-1]) + '</tr>');
+            $('#today tbody').append('<tr id="strong">' + getRows(Object.keys(datas)[i]) + '</tr>');
+            $('#today tbody').append('<tr>' + getRows(Object.keys(datas)[i+1]) + '</tr>');
+          }
+          else
+            $('#tedhenat tr:last').after('<tr>' + getRows(Object.keys(datas)[i]) + '</tr>');
+      }
+    })
+
+  </script>
+  </body>
+</html>
