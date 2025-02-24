@@ -1,5 +1,5 @@
 var datas= {
-  "01.04.2025": {
+  "01.03.2025": {
     "syfyri": "04:34",
     "sabahu":"04:54",
     "lindja_e_diellit": "06:04", 
@@ -10,7 +10,7 @@ var datas= {
     "gjatesia_e_dites": "11:29",
     "shenime": "Dita e parë e Ramazanit, Hëna e re"
   }, 
-  "02.04.2025": {
+  "02.03.2025": {
     "syfyri": "04:33",
     "sabahu":"04:53",
     "lindja_e_diellit": "06:03",
@@ -21,7 +21,7 @@ var datas= {
     "gjatesia_e_dites": "11:31",
     "shenime": ""
   }, 
-  "03.04.2025": {
+  "03.03.2025": {
     "syfyri": "04:31",
     "sabahu":"04:51",
     "lindja_e_diellit": "06:02",
@@ -32,7 +32,7 @@ var datas= {
     "gjatesia_e_dites": "11:34",
     "shenime": ""
   }, 
-  "04.04.2025": {
+  "04.03.2025": {
     "syfyri": "04:29",
     "sabahu":"04:49",
     "lindja_e_diellit": "06:01",
@@ -43,7 +43,7 @@ var datas= {
     "gjatesia_e_dites": "11:36",
     "shenime": ""
   }, 
-  "05.04.2025": {
+  "05.03.2025": {
     "syfyri": "04:27",
     "sabahu":"04:47",
     "lindja_e_diellit": "06:00",
@@ -54,7 +54,7 @@ var datas= {
     "gjatesia_e_dites": "11:38",
     "shenime": "Xhemra III ne tokë"
   }, 
-  "06.04.2025": {
+  "06.03.2025": {
     "syfyri": "04:25",
     "sabahu":"04:45",
     "lindja_e_diellit": "05:58",
@@ -65,7 +65,7 @@ var datas= {
     "gjatesia_e_dites": "11:41",
     "shenime": ""
   }, 
-  "07.04.2025": {
+  "07.03.2025": {
     "syfyri": "04:23",
     "sabahu":"04:43",
     "lindja_e_diellit": "05:56",
@@ -76,7 +76,7 @@ var datas= {
     "gjatesia_e_dites": "11:44",
     "shenime": "E xhuma, Dita e mësuesit"
   }, 
-  "08.04.2025": {
+  "08.03.2025": {
     "syfyri": "04:21",
     "sabahu":"04:41" ,
     "lindja_e_diellit": "05:55",
@@ -89,25 +89,29 @@ var datas= {
   }, 
 
   // Qetu kom met
-  "02.05.2020": {
-    "syfyri": "3:33",
-    "lindja_e_diellit": "5:24",
-    "dreka": "12:36",
-    "ikindia": "16:30",
-    "akshami": "19:44",
-    "jacia": "21:30",
-    "gjatesia_e_dites": "14:20",
+  "09.03.2025": {
+    "syfyri": "04:20",
+    "sabahu":"04:40",
+    "lindja_e_diellit": "05:53",
+    "dreka": "11:50",
+    "ikindia": "15:05",
+    "akshami": "17:43",
+    "jacia": "19:14",
+    "gjatesia_e_dites": "11:50",
     "shenime": ""
   }, 
-  "03.05.2020": {
-    "syfyri": "3:31",
-    "lindja_e_diellit": "5:22",
-    "dreka": "12:36",
-    "ikindia": "16:30",
-    "akshami": "19:45",
-    "jacia": "21:31",
-    "gjatesia_e_dites": "14:23",
+  "10.03.2025": {
+    "syfyri": "04:18",
+    "sabahu":"04:38",
+    "lindja_e_diellit": "05:51",
+    "dreka": "11:50",
+    "ikindia": "15:06",
+    "akshami": "17:44",
+    "jacia": "19:15",
+    "gjatesia_e_dites": "11:53",
     "shenime": ""
+
+    //qetuu kom mett
   }, 
   "04.05.2020": {
     "syfyri": "3:29",
