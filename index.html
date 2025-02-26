@@ -65,12 +65,12 @@
         <td><strong>Data</strong></td>
         <td><strong>Muaji</strong></td>
         <td><strong>Dita</strong></td>
-        <td><strong>Syfyri</strong></td>
+        <td style="background-color: bisque;"><strong>Syfyri</strong></td>
         <td><strong>Sabahu</strong></td>
         <td><strong>Lindja e Diellit</strong></td>
         <td><strong>Dreka</strong></td>
         <td><strong>Ikindia</strong></td>
-        <td><strong>Akshami</strong></td>
+        <td style="background-color: bisque;"><strong>Akshami</strong></td>
         <td><strong>Jacia</strong></td>
         <td><strong>Gjatësia e ditës</strong></td>
         <td><strong>Shënime</strong></td>
@@ -107,12 +107,12 @@
       return  "<td>" + moment(data, "DD-MM-YYYY").locale('sq').format('DD') + "</td>" + 
               "<td>" + moment(data, "DD-MM-YYYY").locale('sq').format('MMMM') + "</td>" + 
               "<td>" + moment(data, "DD-MM-YYYY").locale('sq').format('dddd') + "</td>" + 
-              "<td>" + teDhenat["syfyri"] + "</td>" + 
+              "<td class='dreni'>" + teDhenat["syfyri"] + "</td>"+ 
               "<td>" + teDhenat["sabahu"] + "</td>" + 
               "<td>" + teDhenat["lindja_e_diellit"] + "</td>" + 
               "<td>" + teDhenat["dreka"] + "</td>" + 
               "<td>" + teDhenat["ikindia"] + "</td>" + 
-              "<td>" + teDhenat["akshami"] + "</td>" + 
+              "<td class='dreni'>" + teDhenat["akshami"] + "</td>" + 
               "<td>" + teDhenat["jacia"] + "</td>" + 
               "<td>" + teDhenat["gjatesia_e_dites"] + "</td>" + 
               "<td>" + teDhenat["shenime"] + "</td>";
