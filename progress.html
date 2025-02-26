@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fasting Progress</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+      <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/hover.css">
+  <script src="./datas/data.json" type="text/javascript"></script>
+  <script type="text/javascript" src="./js/moment-with-locales.min.js"></script>
+</head>
+<body>
+    <style>
+    tr#strong * {
+      font-weight: bold;
+    }
+  </style>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">
+      
+    <img style="height: 60px" class="responsive-img" src="mosque.png">
+        
+    </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Check Progress</a></li>
+      </ul>
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="#">#</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+    <div class="progress-container">
+        <h4 class="center">Fasting Progress</h4>
+        <div class="progress-bar">
+            <div id="progress" class="progress-fill"></div>
+        </div>
+        <p id="progress-text" class="center">0% Completed</p>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $.getJSON("./datas/data.json", function (datas) {
+                let today = moment().format("DD-MM-YYYY");
+                let fastingData = datas[today];
+
+                if (fastingData) {
+                    let syfyriTime = moment(fastingData.syfyri, "HH:mm");
+                    let akshamiTime = moment(fastingData.akshami, "HH:mm");
+                    let now = moment();
+
+                    let totalFastingTime = akshamiTime.diff(syfyriTime, 'minutes');
+                    let elapsedTime = now.diff(syfyriTime, 'minutes');
+                    let percentage = Math.min((elapsedTime / totalFastingTime) * 100, 100);
+
+                    $("#progress").css("width", percentage + "%");
+                    $("#progress-text").text(Math.round(percentage) + "% Completed");
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .progress-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #4CAF50;
+            width: 0%;
+            transition: width 0.5s ease-in-out;
+        }
+    </style>
+</body>
+</html>
