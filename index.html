@@ -87,7 +87,8 @@
   <p class="center">Diferenca e kohës, kur dielli perëndon më herët ose më vonë, për shkak të ndryshimit të gjerësisë gjeografike ose lartësisë mbidetare, është për qytetet: <br/>Ferizaj: -1min; Gjilani: -1; Presheva: -2; Prishtina: -1; Podujeva: -1; Sharri: +2 dhe Vushtria: -1 min.<br/><b>Dita e parë e Fitër-Bajramit, e Diel 30 Mars 2025 | Namazi i Fitër-Bajramit falet në orën 06:59min</b> </p>
   <hr style="opacity: 0.2;">
     <div class="center">
-    <a onclick="$('#fader').show(); $('#today').hide(); $(this).hide();" class="waves-effect waves-light btn-large">Shiko me shume</a>
+      <a id="shikoMeShume" class="waves-effect waves-light btn-large">Shiko me shume</a>
+
   </div>
 
 
@@ -123,20 +124,32 @@
                 return;
               }
     };
-
     $(document).ready(function(){
+    let targetDate = "03-03-2025"; // Data që dëshiron të shfaqet fillimisht
 
-      for(let i = 0; i < Object.keys(datas).length; i++) {
-          if(moment().format("DD-MM-YYYY") == moment(Object.keys(datas)[i], "DD-MM-YYYY").format("DD-MM-YYYY")){
+    // Shfaq vetëm të dhënat e datës së synuar
+    for(let i = 0; i < Object.keys(datas).length; i++) {
+        let currentDate = moment(Object.keys(datas)[i], "DD-MM-YYYY").format("DD-MM-YYYY");
+
+        if(currentDate === targetDate){
             $('#tedhenat tr:last').after('<tr id="strong">' + getRows(Object.keys(datas)[i]) + '</tr>');
-            $('#today tbody').append('<tr>' + getRows(Object.keys(datas)[i-1]) + '</tr>');
             $('#today tbody').append('<tr id="strong">' + getRows(Object.keys(datas)[i]) + '</tr>');
-            $('#today tbody').append('<tr>' + getRows(Object.keys(datas)[i+1]) + '</tr>');
-          }
-          else
+        }
+    }
+
+    // Kur klikon "Shiko më shumë", shfaq të gjitha të dhënat
+    $("#shikoMeShume").on("click", function(){
+        $('#fader').show();
+        $('#today').hide();
+        $(this).hide();
+
+        // Mbush tabelën me të gjitha datat
+        for(let i = 0; i < Object.keys(datas).length; i++) {
             $('#tedhenat tr:last').after('<tr>' + getRows(Object.keys(datas)[i]) + '</tr>');
-      }
-    })
+        }
+    });
+});
+
 
 
   </script>
