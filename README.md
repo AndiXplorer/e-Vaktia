@@ -4,4 +4,4 @@
 <b>Gjithesesi nese nderroni te dhenat ne data.json funksionon edhe per vitet tjera.</b> </h3>
 
 
-<a href="https://andicakolli.github.io/Ramazani/">Demo</a>
+<a href="https://e-vaktia.vercel.app/">Demo</a>
