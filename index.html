@@ -125,9 +125,9 @@
               }
     };
     $(document).ready(function(){
-    let targetDate = "03-03-2025"; // Data që dëshiron të shfaqet fillimisht
+    let targetDate = moment().format("DD-MM-YYYY"); // Mere daten automatike
 
-    // Shfaq vetëm të dhënat e datës së synuar
+    // Qiti qato t'dhana
     for(let i = 0; i < Object.keys(datas).length; i++) {
         let currentDate = moment(Object.keys(datas)[i], "DD-MM-YYYY").format("DD-MM-YYYY");
 
