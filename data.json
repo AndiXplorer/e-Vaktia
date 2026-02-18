@@ -1,0 +1,326 @@
+var datas = {
+  "19.02.2026": {
+    "syfyri": "04:49",
+    "sabahu": "05:09",
+    "lindja_e_diellit": "06:23", 
+    "dreka": "11:54",
+    "ikindia": "14:52",
+    "akshami": "17:21",
+    "jacia": "18:52",
+    "gjatesia_e_dites": "10:58",
+    "shenime": "Dita e parë e Ramazanit, Hëna e re"
+  }, 
+  "20.02.2026": {
+    "syfyri": "04:48",
+    "sabahu":"05:08",
+    "lindja_e_diellit": "06:22",
+    "dreka": "11:54",
+    "ikindia": "14:53",
+    "akshami": "17:22",
+    "jacia": "18:53",
+    "gjatesia_e_dites": "11:00",
+    "shenime": "E xhuma"
+  }, 
+  "21.02.2026": {
+    "syfyri": "04:46",
+    "sabahu":"05:06",
+    "lindja_e_diellit": "06:20",
+    "dreka": "11:54",
+    "ikindia": "14:54",
+    "akshami": "17:23",
+    "jacia": "18:54",
+    "gjatesia_e_dites": "11:03",
+    "shenime": ""
+  }, 
+  "22.02.2026": {
+    "syfyri": "04:44",
+    "sabahu":"05:04",
+    "lindja_e_diellit": "06:18",
+    "dreka": "11:54",
+    "ikindia": "14:55",
+    "akshami": "17:25",
+    "jacia": "18:56",
+    "gjatesia_e_dites": "11:07",
+    "shenime": ""
+  }, 
+  "23.02.2026": {
+    "syfyri": "04:43",
+    "sabahu":"05:03",
+    "lindja_e_diellit": "06:17",
+    "dreka": "11:54",
+    "ikindia": "14:56",
+    "akshami": "17:26",
+    "jacia": "18:57",
+    "gjatesia_e_dites": "11:09",
+    "shenime": ""
+  }, 
+  "24.02.2026": {
+    "syfyri": "04:41",
+    "sabahu":"05:01",
+    "lindja_e_diellit": "06:15",
+    "dreka": "11:53",
+    "ikindia": "14:57",
+    "akshami": "17:27",
+    "jacia": "18:58",
+    "gjatesia_e_dites": "11:12",
+    "shenime": ""
+  }, 
+  "25.02.2026": {
+    "syfyri": "04:40",
+    "sabahu":"05:00",
+    "lindja_e_diellit": "06:13",
+    "dreka": "11:53",
+    "ikindia": "14:57",
+    "akshami": "17:28",
+    "jacia": "18:58",
+    "gjatesia_e_dites": "11:15",
+    "shenime": "Xhemra II në ujë"
+  }, 
+  "26.02.2026": {
+    "syfyri": "04:39",
+    "sabahu":"04:59" ,
+    "lindja_e_diellit": "06:11",
+    "dreka": "11:52",
+    "ikindia": "14:58",
+    "akshami": "17:29",
+    "jacia": "18:59",
+    "gjatesia_e_dites": "11:18",
+    "shenime": ""
+  }, 
+
+
+  "27.02.2026": {
+    "syfyri": "04:37",
+    "sabahu":"04:57",
+    "lindja_e_diellit": "06:08",
+    "dreka": "11:51",
+    "ikindia": "14:58",
+    "akshami": "17:30",
+    "jacia": "19:00",
+    "gjatesia_e_dites": "11:22",
+    "shenime": "E xhuma"
+  }, 
+  "28.02.2026": {
+    "syfyri": "04:36",
+    "sabahu":"04:56",
+    "lindja_e_diellit": "06:06",
+    "dreka": "11:51",
+    "ikindia": "14:59",
+    "akshami": "17:31",
+    "jacia": "19:01",
+    "gjatesia_e_dites": "11:25",
+    "shenime": ""
+
+  
+  }, 
+  "01.03.2026": {
+    "syfyri": "04:34",
+    "sabahu":"04:54",
+    "lindja_e_diellit": "06:04",
+    "dreka": "11:51",
+    "ikindia": "14:59",
+    "akshami": "17:33",
+    "jacia": "19:03",
+    "gjatesia_e_dites": "11:29",
+    "shenime": ""
+  }, 
+  "02.03.2026": {
+    "syfyri": "04:33",
+    "sabahu":"04:53",
+    "lindja_e_diellit":"06:03",
+    "dreka": "11:50",
+    "ikindia": "15:00",
+    "akshami": "17:34",
+    "jacia": "19:05",
+    "gjatesia_e_dites": "11:31",
+    "shenime": ""
+  }, 
+  "03.03.2026": {
+    "syfyri": "04:31",
+    "sabahu":"04:51",
+    "lindja_e_diellit": "06:02",
+    "dreka": "11:50",
+    "ikindia": "15:01",
+    "akshami": "17:36",
+    "jacia": "19:07",
+    "gjatesia_e_dites": "11:34",
+    "shenime": ""
+  }, 
+  "04.03.2026": {
+    "syfyri": "04:29",
+    "sabahu":"04:49",
+    "lindja_e_diellit": "06:01",
+    "dreka": "11:50",
+    "ikindia": "15:02",
+    "akshami": "17:37",
+    "jacia": "19:08",
+    "gjatesia_e_dites": "11:36",
+    "shenime": "Hëna e plotë"
+  }, 
+  "05.03.2026": {
+    "syfyri": "04:27",
+    "sabahu":"04:41",
+    "lindja_e_diellit": "06:00",
+    "dreka": "11:50",
+    "ikindia": "15:02",
+    "akshami": "17:38",
+    "jacia": "19:09",
+    "gjatesia_e_dites": "11:38",
+    "shenime": "Xhemra III në tokë"
+  },
+  "06.03.2026": {
+    "syfyri": "04:25",
+    "sabahu":"04:45",
+    "lindja_e_diellit": "05:58",
+    "dreka": "11:50",
+    "ikindia": "15:03",
+    "akshami": "17:39",
+    "jacia": "19:10",
+    "gjatesia_e_dites": "11:41",
+    "shenime": "E xhuma"
+  },
+  "07.03.2026": {
+    "syfyri": "04:23",
+    "sabahu":"04:43",
+    "lindja_e_diellit": "05:56",
+    "dreka": "11:50",
+    "ikindia": "15:03",
+    "akshami": "17:40",
+    "jacia": "19:11",
+    "gjatesia_e_dites": "11:44",
+    "shenime": "Dita e fitores në Bedër, Dita e mësuesit "
+  },
+  "08.03.2026": {
+    "syfyri": "04:21",
+    "sabahu":"04:41",
+    "lindja_e_diellit": "05:55",
+    "dreka": "11:50",
+    "ikindia": "15:04",
+    "akshami": "17:42",
+    "jacia": "19:13",
+    "gjatesia_e_dites": "11:47",
+    "shenime": ""
+  },
+  "09.03.2026": {
+    "syfyri": "04:20",
+    "sabahu":"04:40",
+    "lindja_e_diellit": "05:53",
+    "dreka": "11:50",
+    "ikindia": "15:05",
+    "akshami": "17:43",
+    "jacia": "19:14",
+    "gjatesia_e_dites": "11:50",
+    "shenime": ""
+  },
+  "10.03.2026": {
+    "syfyri": "04:18",
+    "sabahu":"04:38",
+    "lindja_e_diellit": "05:51",
+    "dreka": "11:50",
+    "ikindia": "15:06",
+    "akshami": "17:44",
+    "jacia": "19:15",
+    "gjatesia_e_dites": "11:53",
+    "shenime": "I'tikafi - Dita e çlirimit të Mekës"
+  },
+  "11.03.2026": {
+    "syfyri": "04:16",
+    "sabahu":"04:36",
+    "lindja_e_diellit": "05:49",
+    "dreka": "11:50",
+    "ikindia": "15:06",
+    "akshami": "17:45",
+    "jacia": "19:16",
+    "gjatesia_e_dites": "11:56",
+    "shenime": ""
+  },
+  "12.03.2026": {
+    "syfyri": "04:15",
+    "sabahu":"04:35",
+    "lindja_e_diellit": "05:47",
+    "dreka": "11:49",
+    "ikindia": "15:07",
+    "akshami": "17:47",
+    "jacia": "19:18",
+    "gjatesia_e_dites": "12:00",
+    "shenime": ""
+  },
+  "13.03.2026": {
+    "syfyri": "04:14",
+    "sabahu":"04:34",
+    "lindja_e_diellit": "05:46",
+    "dreka": "11:49",
+    "ikindia": "15:08",
+    "akshami": "17:48",
+    "jacia": "19:19",
+    "gjatesia_e_dites": "12:02",
+    "shenime": "E xhuma"
+  },
+  "14.03.2026": {
+    "syfyri": "04:13",
+    "sabahu":"04:33",
+    "lindja_e_diellit": "05:44",
+    "dreka": "11:49",
+    "ikindia": "15:08",
+    "akshami": "17:49",
+    "jacia": "19:20",
+    "gjatesia_e_dites": "12:05",
+    "shenime": ""
+  },
+  "15.03.2026": {
+    "syfyri": "04:11",
+    "sabahu":"04:31",
+    "lindja_e_diellit": "05:42",
+    "dreka": "11:49",
+    "ikindia": "15:08",
+    "akshami": "17:50",
+    "jacia": "19:21",
+    "gjatesia_e_dites": "12:08",
+    "shenime": ""
+  },
+  "16.03.2026": {
+    "syfyri": "04:09",
+    "sabahu":"04:29",
+    "lindja_e_diellit": "05:40",
+    "dreka": "11:49",
+    "ikindia": "15:08",
+    "akshami": "17:51",
+    "jacia": "19:22",
+    "gjatesia_e_dites": "12:11",
+    "shenime": "Nata e madhe e Kadrit"
+  },
+  "17.03.2026": {
+    "syfyri": "04:08",
+    "sabahu":"04:28",
+    "lindja_e_diellit": "05:38",
+    "dreka": "11:48",
+    "ikindia": "15:09",
+    "akshami": "17:52",
+    "jacia": "19:23",
+    "gjatesia_e_dites": "12:14",
+    "shenime": ""
+  },
+  "18.03.2026": {
+    "syfyri": "04:06",
+    "sabahu":"04:26",
+    "lindja_e_diellit": "05:36",
+    "dreka": "11:48",
+    "ikindia": "15:09",
+    "akshami": "17:53",
+    "jacia": "19:25",
+    "gjatesia_e_dites": "12:17",
+    "shenime": ""
+  },
+  "29.03.2025": {
+    "syfyri": "04:04",
+    "sabahu":"04:24",
+    "lindja_e_diellit": "05:35",
+    "dreka": "11:48",
+    "ikindia": "15:10",
+    "akshami": "17:55",
+    "jacia": "19:26",
+    "gjatesia_e_dites": "12:20",
+    "shenime": "Nata e Fitër Bajramit"
+  },
+ 
+}
