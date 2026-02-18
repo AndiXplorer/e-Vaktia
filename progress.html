@@ -3,92 +3,720 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fasting Progress</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-      <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/hover.css">
-  <script src="./datas/data.json" type="text/javascript"></script>
-  <script type="text/javascript" src="./js/moment-with-locales.min.js"></script>
-</head>
-<body>
+    <title>Fasting Progress - Ramazani 2025</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Materialize CSS -->
+    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    
     <style>
-    tr#strong * {
-      font-weight: bold;
-    }
-  </style>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">
-      
-    <img style="height: 60px" class="responsive-img" src="mosque.png">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
-    </a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Check Progress</a></li>
-      </ul>
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">#</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-
-    <div class="progress-container">
-        <h4 class="center">Fasting Progress</h4>
-        <div class="progress-bar">
-            <div id="progress" class="progress-fill"></div>
-        </div>
-        <p id="progress-text" class="center">0% Completed</p>
-    </div>
-
-    <script>
-        $(document).ready(function () {
-            $.getJSON("./datas/data.json", function (datas) {
-                let today = moment().format("DD-MM-YYYY");
-                let fastingData = datas[today];
-
-                if (fastingData) {
-                    let syfyriTime = moment(fastingData.syfyri, "HH:mm");
-                    let akshamiTime = moment(fastingData.akshami, "HH:mm");
-                    let now = moment();
-
-                    let totalFastingTime = akshamiTime.diff(syfyriTime, 'minutes');
-                    let elapsedTime = now.diff(syfyriTime, 'minutes');
-                    let percentage = Math.min((elapsedTime / totalFastingTime) * 100, 100);
-
-                    $("#progress").css("width", percentage + "%");
-                    $("#progress-text").text(Math.round(percentage) + "% Completed");
-                }
-            });
-        });
-    </script>
-
-    <style>
-        .progress-container {
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 400px;
-            margin: 20px auto;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        
+        .bg-animation li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            animation: animate 25s linear infinite;
+            bottom: -150px;
+            border-radius: 50%;
+        }
+        
+        .bg-animation li:nth-child(1) {
+            left: 25%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+        
+        .bg-animation li:nth-child(2) {
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
+        }
+        
+        .bg-animation li:nth-child(3) {
+            left: 70%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 4s;
+        }
+        
+        .bg-animation li:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+        
+        .bg-animation li:nth-child(5) {
+            left: 65%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 0s;
+        }
+        
+        .bg-animation li:nth-child(6) {
+            left: 75%;
+            width: 110px;
+            height: 110px;
+            animation-delay: 3s;
+        }
+        
+        .bg-animation li:nth-child(7) {
+            left: 35%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 7s;
+        }
+        
+        .bg-animation li:nth-child(8) {
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            animation-delay: 15s;
+            animation-duration: 45s;
+        }
+        
+        .bg-animation li:nth-child(9) {
+            left: 20%;
+            width: 15px;
+            height: 15px;
+            animation-delay: 2s;
+            animation-duration: 35s;
+        }
+        
+        .bg-animation li:nth-child(10) {
+            left: 85%;
+            width: 150px;
+            height: 150px;
+            animation-delay: 0s;
+            animation-duration: 11s;
+        }
+        
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+                border-radius: 0;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+                border-radius: 50%;
+            }
+        }
+        
+        /* Main Container */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        /* Progress Card */
+        .progress-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .header-icon i {
+            font-size: 40px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            color: #718096;
+            font-size: 14px;
+        }
+        
+        /* Circular Progress */
+        .progress-circle-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 30px auto;
+        }
+        
+        .progress-circle {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+        
+        .progress-circle-bg {
+            fill: none;
+            stroke: #e2e8f0;
+            stroke-width: 15;
+        }
+        
+        .progress-circle-fill {
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 15;
+            stroke-linecap: round;
+            stroke-dasharray: 628.32;
+            stroke-dashoffset: 628.32;
+            transition: stroke-dashoffset 1s ease-in-out;
+            filter: drop-shadow(0 4px 6px rgba(102, 126, 234, 0.3));
+        }
+        
+        .progress-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
         }
-        .progress-bar {
-            width: 100%;
-            height: 20px;
-            background: #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 10px;
+        
+        .progress-percentage {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
         }
-        .progress-fill {
-            height: 100%;
-            background: #4CAF50;
-            width: 0%;
-            transition: width 0.5s ease-in-out;
+        
+        .progress-label {
+            font-size: 12px;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+        
+        /* Time Info */
+        .time-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .time-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .time-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .time-label {
+            font-size: 11px;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .time-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        
+        /* Countdown Section */
+        .countdown-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .countdown-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .countdown-timer {
+            font-size: 42px;
+            font-weight: 700;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            letter-spacing: 3px;
+        }
+        
+        /* Status Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            width: fit-content;
+        }
+        
+        .status-fasting {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+        }
+        
+        .status-pending {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        
+        .status-complete {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        
+        .status-no-data {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+        }
+        
+        /* Back Button */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(-3px);
+        }
+        
+        .back-btn i {
+            color: #667eea;
+            font-size: 24px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .progress-card {
+                padding: 30px 20px;
+            }
+            
+            .progress-circle-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .progress-percentage {
+                font-size: 36px;
+            }
+            
+            .countdown-timer {
+                font-size: 32px;
+            }
+            
+            .time-info {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* SVG Gradient Definition */
+        .svg-defs {
+            position: absolute;
+            width: 0;
+            height: 0;
         }
     </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <ul class="bg-animation">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    
+    <!-- SVG Gradient Definition -->
+    <svg class="svg-defs">
+        <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#667eea"/>
+                <stop offset="100%" style="stop-color:#764ba2"/>
+            </linearGradient>
+        </defs>
+    </svg>
+    
+    <!-- Main Container -->
+    <div class="container">
+        <div class="progress-card">
+            <!-- Back Button -->
+            <a href="index.html" class="back-btn">
+                <i class="material-icons">arrow_back</i>
+            </a>
+            
+            <!-- Header -->
+            <div class="header">
+                <div class="header-icon">
+                    <i class="material-icons">brightness_2</i>
+                </div>
+                <h1>Fasting Progress</h1>
+                <p id="current-date">Loading...</p>
+            </div>
+            
+            <!-- Circular Progress -->
+            <div class="progress-circle-container">
+                <svg class="progress-circle" viewBox="0 0 220 220">
+                    <circle class="progress-circle-bg" cx="110" cy="110" r="100"/>
+                    <circle class="progress-circle-fill" cx="110" cy="110" r="100" id="progress-circle"/>
+                </svg>
+                <div class="progress-content">
+                    <div class="progress-percentage" id="progress-percent">0%</div>
+                    <div class="progress-label">Completed</div>
+                </div>
+            </div>
+            
+            <!-- Time Information -->
+            <div class="time-info">
+                <div class="time-box">
+                    <div class="time-label">Syfyri</div>
+                    <div class="time-value" id="syfyri-time">--:--</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-label">Akshami</div>
+                    <div class="time-value" id="akshami-time">--:--</div>
+                </div>
+            </div>
+            
+            <!-- Countdown -->
+            <div class="countdown-section">
+                <div class="countdown-label" id="countdown-label">Time Until Iftar</div>
+                <div class="countdown-timer" id="countdown">00:00:00</div>
+            </div>
+            
+            <!-- Status Badge -->
+            <div class="status-badge status-pending" id="status-badge">
+                <i class="material-icons" id="status-icon">schedule</i>
+                <span id="status-text">Loading...</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./datas/data.json" type="text/javascript"></script>
+    <script src="./js/moment-with-locales.min.js"></script>
+    
+    <script>
+        /**
+         * LOGIC EXPLANATION:
+         * 
+         * 1. The data.json file contains fasting times for each day in format "DD.MM.YYYY"
+         * 2. We get today's date and look up the fasting data
+         * 3. Fasting starts at Syfyri time and ends at Akshami time
+         * 4. We calculate:
+         *    - Total fasting duration (Akshami - Syfyri)
+         *    - Elapsed time (Current time - Syfyri)
+         *    - Percentage complete = (Elapsed / Total) * 100
+         * 5. We show different states:
+         *    - Before Syfyri: Show countdown to start
+         *    - Between Syfyri and Akshami: Show progress % and countdown to Iftar
+         *    - After Akshami: Show 100% complete
+         * 6. Everything updates every second for real-time accuracy
+         */
+        
+        $(document).ready(function() {
+            // Set locale to Albanian for date display
+            moment.locale('sq');
+            
+            // Display current date in header
+            $('#current-date').text(moment().format('dddd, D MMMM YYYY'));
+            
+            // Get today's fasting data
+            // data.json uses "DD.MM.YYYY" format (e.g., "01.03.2025")
+            let todayKey = moment().format('DD.MM.YYYY');
+            let fastingData = datas[todayKey];
+            
+            // If no exact match, try without leading zeros
+            if (!fastingData) {
+                todayKey = moment().format('D.M.YYYY');
+                fastingData = datas[todayKey];
+            }
+            
+            if (fastingData) {
+                // Start the progress tracking
+                updateFastingProgress(fastingData);
+                
+                // Update every second for real-time countdown
+                setInterval(function() {
+                    updateFastingProgress(fastingData);
+                }, 1000);
+            } else {
+                // No data available for today
+                showNoDataState();
+            }
+        });
+        
+        /**
+         * Main function to calculate and display fasting progress
+         * @param {Object} data - The fasting data for today containing syfyri and akshami times
+         */
+        function updateFastingProgress(data) {
+            // Get current time
+            let now = moment();
+            
+            // Parse the fasting start and end times
+            // Using today's date with the time from the data
+            let syfyri = moment(data.syfyri, 'HH:mm');
+            let akshami = moment(data.akshami, 'HH:mm');
+            
+            // Update the time displays
+            $('#syfyri-time').text(data.syfyri);
+            $('#akshami-time').text(data.akshami);
+            
+            // Calculate total fasting duration in minutes
+            let totalDuration = akshami.diff(syfyri, 'minutes');
+            
+            // Determine current state and calculate progress
+            let percentage = 0;
+            let secondsRemaining = 0;
+            let state = ''; // 'pending', 'fasting', or 'complete'
+            
+            if (now.isBefore(syfyri)) {
+                // STATE 1: Fasting hasn't started yet
+                state = 'pending';
+                percentage = 0;
+                secondsRemaining = syfyri.diff(now, 'seconds');
+                
+            } else if (now.isAfter(akshami)) {
+                // STATE 2: Fasting is complete for today
+                state = 'complete';
+                percentage = 100;
+                secondsRemaining = 0;
+                
+            } else {
+                // STATE 3: Currently fasting
+                state = 'fasting';
+                let elapsedMinutes = now.diff(syfyri, 'minutes');
+                percentage = (elapsedMinutes / totalDuration) * 100;
+                secondsRemaining = akshami.diff(now, 'seconds');
+            }
+            
+            // Update the UI with calculated values
+            updateUI(percentage, secondsRemaining, state);
+        }
+        
+        /**
+         * Updates all UI elements based on current state
+         * @param {number} percentage - Fasting completion percentage (0-100)
+         * @param {number} secondsRemaining - Seconds until next event
+         * @param {string} state - Current state: 'pending', 'fasting', or 'complete'
+         */
+        function updateUI(percentage, secondsRemaining, state) {
+            // Clamp percentage between 0 and 100
+            percentage = Math.min(Math.max(percentage, 0), 100);
+            
+            // Update circular progress
+            // Circle circumference = 2 * PI * r = 2 * 3.14159 * 100 ≈ 628.32
+            let circumference = 628.32;
+            let offset = circumference - (percentage / 100) * circumference;
+            $('#progress-circle').css('stroke-dashoffset', offset);
+            
+            // Update percentage text with animation
+            animateNumber($('#progress-percent'), Math.round(percentage), '%');
+            
+            // Format and display countdown
+            let timeString = formatTime(secondsRemaining);
+            $('#countdown').text(timeString);
+            
+            // Update state-specific UI elements
+            updateStateUI(state);
+        }
+        
+        /**
+         * Updates UI elements based on current fasting state
+         * @param {string} state - 'pending', 'fasting', or 'complete'
+         */
+        function updateStateUI(state) {
+            let badge = $('#status-badge');
+            let icon = $('#status-icon');
+            let text = $('#status-text');
+            let countdownLabel = $('#countdown-label');
+            
+            // Remove all state classes first
+            badge.removeClass('status-pending status-fasting status-complete status-no-data');
+            
+            switch(state) {
+                case 'pending':
+                    badge.addClass('status-pending');
+                    icon.text('schedule');
+                    text.text('Fasting starts soon');
+                    countdownLabel.text('Time Until Fasting Starts');
+                    break;
+                    
+                case 'fasting':
+                    badge.addClass('status-fasting');
+                    icon.text('restaurant');
+                    text.text('You are fasting');
+                    countdownLabel.text('Time Until Iftar');
+                    break;
+                    
+                case 'complete':
+                    badge.addClass('status-complete');
+                    icon.text('check_circle');
+                    text.text('Fasting complete!');
+                    countdownLabel.text('Next fast tomorrow');
+                    $('#countdown').text('All done!');
+                    break;
+            }
+        }
+        
+        /**
+         * Shows the no data state when fasting information is unavailable
+         */
+        function showNoDataState() {
+            $('#syfyri-time').text('--:--');
+            $('#akshami-time').text('--:--');
+            $('#countdown').text('--:--:--');
+            $('#progress-percent').text('?');
+            
+            let badge = $('#status-badge');
+            badge.removeClass('status-pending status-fasting status-complete');
+            badge.addClass('status-no-data');
+            $('#status-icon').text('error_outline');
+            $('#status-text').text('No data for today');
+            $('#countdown-label').text('No fasting schedule available');
+        }
+        
+        /**
+         * Formats seconds into HH:MM:SS string
+         * @param {number} totalSeconds - Total seconds to format
+         * @returns {string} Formatted time string
+         */
+        function formatTime(totalSeconds) {
+            if (totalSeconds <= 0) return '00:00:00';
+            
+            let hours = Math.floor(totalSeconds / 3600);
+            let minutes = Math.floor((totalSeconds % 3600) / 60);
+            let seconds = totalSeconds % 60;
+            
+            return pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
+        }
+        
+        /**
+         * Pads a number with leading zero if needed
+         * @param {number} num - Number to pad
+         * @returns {string} Padded string
+         */
+        function pad(num) {
+            return String(num).padStart(2, '0');
+        }
+        
+        /**
+         * Animates a number change with smooth transition
+         * @param {jQuery} element - jQuery element to update
+         * @param {number} target - Target number
+         * @param {string} suffix - Suffix to append (e.g., '%')
+         */
+        function animateNumber(element, target, suffix) {
+            let current = parseInt(element.text()) || 0;
+            if (current === target) return;
+            
+            element.text(target + suffix);
+        }
+    </script>
 </body>
 </html>
