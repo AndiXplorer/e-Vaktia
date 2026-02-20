@@ -1,17 +1,1046 @@
-/* Custom Stylesheet */
-/**
- * Use this file to override Materialize files so you can update
- * the core Materialize files in the future
- *
- * Made By MaterializeCSS.com
- */
+/* ============================================
+   e-Vaktia - Ramadan Aesthetic Theme
+   A beautiful dark night sky design with
+   gold accents, stars, and Islamic patterns
+   ============================================ */
 
-.icon-block {
+/* --- Google Fonts Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* --- CSS Custom Properties --- */
+:root {
+  --bg-primary: #0a0e27;
+  --bg-secondary: #111640;
+  --bg-card: rgba(17, 22, 64, 0.85);
+  --bg-glass: rgba(17, 22, 64, 0.6);
+  --gold: #d4a843;
+  --gold-light: #f0d78c;
+  --gold-dark: #a07c2e;
+  --green-primary: #1b8a5a;
+  --green-light: #2dce89;
+  --green-glow: rgba(45, 206, 137, 0.3);
+  --text-primary: #e8e6e3;
+  --text-secondary: #9b9fb5;
+  --text-gold: #f0d78c;
+  --accent-purple: #6c5ce7;
+  --accent-blue: #4fc3f7;
+  --shadow-glow: 0 0 30px rgba(212, 168, 67, 0.15);
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --border-gold: 1px solid rgba(212, 168, 67, 0.2);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* --- Animated Starry Background --- */
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle var(--duration) ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(212, 168, 67, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(212, 168, 67, 0.4); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes countdown-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* --- Navbar --- */
+nav, nav.light-blue.lighten-1 {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(17, 22, 64, 0.95) 100%) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: var(--border-gold);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  height: 70px;
+  line-height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+nav .nav-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+nav .brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 70px;
+}
+
+nav .brand-logo img {
+  height: 48px !important;
+  filter: drop-shadow(0 0 8px rgba(212, 168, 67, 0.4));
+  transition: var(--transition);
+}
+
+nav .brand-logo img:hover {
+  filter: drop-shadow(0 0 15px rgba(212, 168, 67, 0.6));
+  transform: scale(1.05);
+}
+
+nav .brand-logo .app-title {
+  font-family: 'Amiri', serif;
+  color: var(--gold-light);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+nav ul a {
+  color: var(--text-primary) !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
+  position: relative;
+  padding: 0 20px;
+}
+
+nav ul a::after {
+  content: '';
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: var(--transition);
+  border-radius: 2px;
+}
+
+nav ul a:hover {
+  color: var(--gold-light) !important;
+  background: transparent !important;
+}
+
+nav ul a:hover::after {
+  width: 60%;
+}
+
+.sidenav {
+  background: var(--bg-secondary) !important;
+  border-right: var(--border-gold);
+}
+
+.sidenav li > a {
+  color: var(--text-primary) !important;
+  font-family: 'Poppins', sans-serif;
+}
+
+.sidenav li > a:hover {
+  background: rgba(212, 168, 67, 0.1) !important;
+  color: var(--gold-light) !important;
+}
+
+.sidenav-trigger i {
+  color: var(--gold-light);
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  position: relative;
+  z-index: 1;
+  padding: 60px 20px 40px;
+  text-align: center;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.crescent-moon {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 0 20px rgba(212, 168, 67, 0.5));
+  animation: float-gentle 3s ease-in-out infinite;
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero-section h1 {
+  font-family: 'Amiri', serif;
+  font-size: 3rem;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  text-shadow: 0 0 30px rgba(212, 168, 67, 0.3);
+  letter-spacing: 2px;
+}
+
+.hero-section .subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.hero-section .ramadan-year {
+  font-family: 'Amiri', serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+  opacity: 0.8;
+}
+
+/* --- Ramadan Day Counter --- */
+.day-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  border: var(--border-gold);
+  border-radius: 50px;
+  padding: 8px 24px;
+  margin-top: 15px;
+  color: var(--gold-light);
+  font-weight: 500;
+  font-size: 0.95rem;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.day-counter .day-number {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* --- Today's Prayer Card --- */
+.today-card {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 20px;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.today-card .card-inner {
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  border: var(--border-gold);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.today-card .card-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.today-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.today-card .card-title {
+  font-family: 'Amiri', serif;
+  font-size: 1.5rem;
+  color: var(--gold-light);
+}
+
+.today-card .card-date {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 300;
+}
+
+.prayer-times-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+}
+
+.prayer-time-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  padding: 18px 12px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.prayer-time-item:hover {
+  background: rgba(212, 168, 67, 0.08);
+  border-color: rgba(212, 168, 67, 0.2);
+  transform: translateY(-3px);
+}
+
+.prayer-time-item.highlight {
+  background: linear-gradient(135deg, rgba(212, 168, 67, 0.12), rgba(212, 168, 67, 0.05));
+  border-color: rgba(212, 168, 67, 0.3);
+  box-shadow: 0 4px 15px rgba(212, 168, 67, 0.1);
+}
+
+.prayer-time-item .prayer-name {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.prayer-time-item .prayer-time {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.prayer-time-item.highlight .prayer-time {
+  color: var(--gold-light);
+}
+
+.prayer-time-item .prayer-icon {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+/* --- Iftar Countdown --- */
+.countdown-section {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  padding: 0 20px;
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.countdown-card {
+  background: linear-gradient(135deg, rgba(27, 138, 90, 0.15), rgba(17, 22, 64, 0.9));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(45, 206, 137, 0.2);
+  border-radius: var(--radius);
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(45, 206, 137, 0.1);
+}
+
+.countdown-card .countdown-label {
+  font-size: 0.85rem;
+  color: var(--green-light);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.countdown-timer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.countdown-unit {
+  text-align: center;
+}
+
+.countdown-unit .number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm);
+  padding: 10px 18px;
+  min-width: 70px;
+  display: block;
+  font-variant-numeric: tabular-nums;
+  border: 1px solid rgba(45, 206, 137, 0.15);
+}
+
+.countdown-unit .label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 6px;
+  display: block;
+}
+
+.countdown-separator {
+  font-size: 2.5rem;
+  color: var(--green-light);
+  line-height: 1;
+  padding-top: 10px;
+  animation: countdown-pulse 1s ease-in-out infinite;
+}
+
+/* --- Info Banner --- */
+.info-banner {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto 30px;
+  padding: 0 20px;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.info-banner .banner-inner {
+  background: var(--bg-glass);
+  backdrop-filter: blur(10px);
+  border: var(--border-gold);
+  border-radius: var(--radius-sm);
+  padding: 20px 25px;
+  text-align: center;
+}
+
+.info-banner p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.info-banner b, .info-banner strong {
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+/* --- Show More Button --- */
+.btn-container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin: 30px 0;
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+a.waves-effect.waves-light.btn-large,
+.btn-ramadan {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold)) !important;
+  color: var(--bg-primary) !important;
+  border: none;
+  border-radius: 50px;
+  padding: 0 40px;
+  height: 50px;
+  line-height: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: none;
+  box-shadow: 0 4px 20px rgba(212, 168, 67, 0.3);
+  transition: var(--transition);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+a.waves-effect.waves-light.btn-large:hover,
+.btn-ramadan:hover {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light)) !important;
+  box-shadow: 0 6px 30px rgba(212, 168, 67, 0.5);
+  transform: translateY(-2px);
+}
+
+/* --- Timetable --- */
+.timetable-section {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+.timetable-section .section-title {
+  font-family: 'Amiri', serif;
+  font-size: 2rem;
+  color: var(--gold-light);
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Full timetable and today table */
+table, table.striped, table.responsive-table {
+  background: var(--bg-card) !important;
+  border: var(--border-gold);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: var(--shadow-card);
+  width: 100%;
+}
+
+table thead tr {
+  background: linear-gradient(135deg, rgba(212, 168, 67, 0.15), rgba(212, 168, 67, 0.05)) !important;
+}
+
+table thead td, table thead th {
+  color: var(--gold-light) !important;
+  font-weight: 600 !important;
+  font-size: 0.8rem !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 16px 12px !important;
+  border-bottom: 1px solid rgba(212, 168, 67, 0.15) !important;
+  white-space: nowrap;
+  background: transparent !important;
+}
+
+table tbody tr {
+  transition: var(--transition);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+table tbody tr:hover {
+  background: rgba(212, 168, 67, 0.05) !important;
+}
+
+table tbody tr:last-child {
+  border-bottom: none;
+}
+
+table tbody td {
+  color: var(--text-primary) !important;
+  font-size: 0.9rem;
+  padding: 14px 12px !important;
+  border: none !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Highlight Syfyri and Akshami columns */
+td.dreni, td[style*="bisque"] {
+  background: rgba(212, 168, 67, 0.1) !important;
+  color: var(--gold-light) !important;
+  font-weight: 600 !important;
+}
+
+/* Today's row highlighted */
+tr#strong {
+  background: linear-gradient(135deg, rgba(212, 168, 67, 0.12), rgba(212, 168, 67, 0.05)) !important;
+  position: relative;
+}
+
+tr#strong td, tr#strong * {
+  color: var(--gold-light) !important;
+  font-weight: 600 !important;
+}
+
+/* Striped rows */
+table.striped tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Shenime (notes) column special styling */
+table tbody td:last-child:not(:empty) {
+  color: var(--green-light) !important;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+
+/* --- Progress Page --- */
+.progress-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 0 20px;
+  text-align: center;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.progress-container h4 {
+  font-family: 'Amiri', serif;
+  font-size: 2rem;
+  color: var(--gold-light);
+  margin-bottom: 30px;
+}
+
+/* Circular Progress */
+.circular-progress {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 30px;
+}
+
+.circular-progress svg {
+  transform: rotate(-90deg);
+  width: 220px;
+  height: 220px;
+}
+
+.circular-progress .track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 10;
+}
+
+.circular-progress .fill {
+  fill: none;
+  stroke: url(#progressGradient);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 628;
+  stroke-dashoffset: 628;
+  transition: stroke-dashoffset 1.5s ease-in-out;
+}
+
+.circular-progress .percentage-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.circular-progress .percentage-text .number {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: block;
+  line-height: 1;
+}
+
+.circular-progress .percentage-text .symbol {
+  font-size: 1.2rem;
+  color: var(--green-light);
+}
+
+.circular-progress .percentage-text .label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 5px;
+  display: block;
+}
+
+/* Linear progress bar fallback */
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--green-primary), var(--green-light));
+  width: 0%;
+  border-radius: 10px;
+  transition: width 1.5s ease-in-out;
+  box-shadow: 0 0 10px var(--green-glow);
+}
+
+#progress-text {
+  color: var(--text-secondary) !important;
+  font-size: 0.9rem;
+  margin-top: 15px;
+}
+
+/* --- Fasting Info Cards --- */
+.fasting-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.fasting-info-card {
+  background: var(--bg-glass);
+  border: var(--border-gold);
+  border-radius: var(--radius-sm);
+  padding: 20px 15px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.fasting-info-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(212, 168, 67, 0.3);
+}
+
+.fasting-info-card .info-icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.fasting-info-card .info-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.fasting-info-card .info-value {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* --- Footer --- */
+.footer-ramadan {
+  position: relative;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent, rgba(17, 22, 64, 0.8));
+  border-top: var(--border-gold);
+  padding: 40px 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer-ramadan .quote-wrapper {
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-ramadan .dua {
+  font-family: 'Amiri', serif;
+  font-size: 1.3rem;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  direction: rtl;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.footer-ramadan .dua-translation {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 20px;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.footer-ramadan .dua.fade-out,
+.footer-ramadan .dua-translation.fade-out {
+  opacity: 0;
+}
+
+.footer-ramadan .dua.fade-in,
+.footer-ramadan .dua-translation.fade-in {
+  opacity: 1;
+}
+
+.footer-ramadan .footer-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+.footer-ramadan .footer-text a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* --- Islamic Pattern Decorative Border --- */
+.islamic-border {
+  width: 100%;
+  height: 30px;
+  background-image: 
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 20px,
+      rgba(212, 168, 67, 0.1) 20px,
+      rgba(212, 168, 67, 0.1) 21px
+    );
+  position: relative;
+  z-index: 1;
+}
+
+.islamic-border::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 67, 0.3), transparent);
+}
+
+/* --- Decorative Divider --- */
+.ornament-divider {
+  text-align: center;
+  margin: 25px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.ornament-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 168, 67, 0.3), transparent);
+}
+
+.ornament-divider span {
+  position: relative;
+  background: var(--bg-primary);
   padding: 0 15px;
+  color: var(--gold);
+  font-size: 1.2rem;
 }
-.icon-block .material-icons {
-	font-size: inherit;
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2.2rem;
+  }
+  
+  .prayer-times-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  
+  .prayer-time-item {
+    padding: 14px 8px;
+  }
+  
+  .prayer-time-item .prayer-time {
+    font-size: 1.1rem;
+  }
+  
+  .prayer-time-item .prayer-name {
+    font-size: 0.65rem;
+  }
+  
+  .countdown-unit .number {
+    font-size: 2rem;
+    padding: 8px 14px;
+    min-width: 55px;
+  }
+  
+  .countdown-separator {
+    font-size: 2rem;
+  }
+  
+  .today-card .card-inner {
+    padding: 20px;
+  }
+  
+  table thead td, table thead th {
+    font-size: 0.7rem !important;
+    padding: 12px 8px !important;
+  }
+  
+  table tbody td {
+    font-size: 0.8rem;
+    padding: 10px 8px !important;
+  }
+  
+  .timetable-section .section-title {
+    font-size: 1.6rem;
+  }
 }
-.dreni {
-  background-color: bisque;
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 40px 15px 30px;
+  }
+  
+  .hero-section h1 {
+    font-size: 1.8rem;
+  }
+  
+  .prayer-times-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .countdown-timer {
+    gap: 8px;
+  }
+  
+  .countdown-unit .number {
+    font-size: 1.6rem;
+    padding: 6px 10px;
+    min-width: 45px;
+  }
+  
+  .fasting-info {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --- Utility Classes --- */
+.text-gold { color: var(--gold-light); }
+.text-green { color: var(--green-light); }
+.text-muted { color: var(--text-secondary); }
+.mb-0 { margin-bottom: 0; }
+.mt-20 { margin-top: 20px; }
+
+/* --- Override Materialize defaults --- */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+h3.orange-text {
+  color: var(--gold-light) !important;
+  font-family: 'Amiri', serif !important;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+hr {
+  border-color: rgba(212, 168, 67, 0.1) !important;
+  opacity: 1 !important;
+}
+
+.section.no-pad-bot {
+  padding: 0;
+}
+
+/* Hide the old today table in favor of new card */
+#today {
+  display: none !important;
+}
+
+/* Container override */
+.container {
+  max-width: 1200px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 168, 67, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 168, 67, 0.5);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(212, 168, 67, 0.3);
+  color: var(--gold-light);
+}
+
+/* --- Loading Animation --- */
+.loading-shimmer {
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0.02) 25%, 
+    rgba(255,255,255,0.06) 50%, 
+    rgba(255,255,255,0.02) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* --- Tooltip for prayer names --- */
+.prayer-time-item[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition);
+  border: var(--border-gold);
+}
+
+.prayer-time-item[data-tooltip]:hover::after {
+  opacity: 1;
+  bottom: calc(100% + 5px);
 }

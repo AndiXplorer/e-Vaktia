@@ -1,94 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fasting Progress</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-      <!-- CSS  -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0a0e27"/>
+  <title>e-Vaktia | Progresi i Agjërimit</title>
+
+  <!-- CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/hover.css">
+
+  <!-- Data & Moment.js -->
   <script src="./datas/data.json" type="text/javascript"></script>
   <script type="text/javascript" src="./js/moment-with-locales.min.js"></script>
 </head>
 <body>
-    <style>
-    tr#strong * {
-      font-weight: bold;
-    }
-  </style>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">
-      
-    <img style="height: 60px" class="responsive-img" src="mosque.png">
-        
-    </a>
+
+  <!-- Animated Stars Background -->
+  <div class="stars-container" id="starsContainer"></div>
+
+  <!-- Navbar -->
+  <nav role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="index.html" class="brand-logo">
+        <img class="responsive-img" src="mosque.png" alt="e-Vaktia">
+        <span class="app-title hide-on-small-only">e-Vaktia</span>
+      </a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Check Progress</a></li>
+        <li><a href="index.html"><i class="material-icons left">today</i>Orari</a></li>
+        <li><a href="progress.html"><i class="material-icons left">timelapse</i>Progresi</a></li>
       </ul>
       <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">#</a></li>
+        <li><a href="index.html"><i class="material-icons">today</i>Orari i Namazit</a></li>
+        <li><a href="progress.html"><i class="material-icons">timelapse</i>Progresi i Agjërimit</a></li>
       </ul>
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 
-    <div class="progress-container">
-        <h4 class="center">Fasting Progress</h4>
-        <div class="progress-bar">
-            <div id="progress" class="progress-fill"></div>
-        </div>
-        <p id="progress-text" class="center">0% Completed</p>
+  <!-- Hero -->
+  <section class="hero-section" style="padding-bottom: 10px;">
+    <div class="crescent-moon" style="font-size: 3rem;">&#9790;</div>
+    <h1 style="font-size: 2.2rem;">Progresi i Agjërimit</h1>
+    <p class="subtitle" id="progressDate"></p>
+  </section>
+
+  <!-- Circular Progress -->
+  <div class="progress-container" style="margin-top: 20px;">
+    <div class="circular-progress" id="circularProgress">
+      <svg viewBox="0 0 220 220">
+        <defs>
+          <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color: #1b8a5a"/>
+            <stop offset="50%" style="stop-color: #2dce89"/>
+            <stop offset="100%" style="stop-color: #d4a843"/>
+          </linearGradient>
+        </defs>
+        <circle class="track" cx="110" cy="110" r="100"/>
+        <circle class="fill" id="progressCircle" cx="110" cy="110" r="100"/>
+      </svg>
+      <div class="percentage-text">
+        <span class="number" id="percentNumber">0</span><span class="symbol">%</span>
+        <span class="label">Përfunduar</span>
+      </div>
     </div>
 
-    <script>
-        $(document).ready(function () {
-            $.getJSON("./datas/data.json", function (datas) {
-                let today = moment().format("DD-MM-YYYY");
-                let fastingData = datas[today];
+    <!-- Linear progress bar (complementary) -->
+    <div class="progress-bar" style="margin-top: 5px;">
+      <div id="progress" class="progress-fill"></div>
+    </div>
+    <p id="progress-text" class="center" style="margin-top: 10px;">Duke llogaritur...</p>
+  </div>
 
-                if (fastingData) {
-                    let syfyriTime = moment(fastingData.syfyri, "HH:mm");
-                    let akshamiTime = moment(fastingData.akshami, "HH:mm");
-                    let now = moment();
+  <!-- Fasting Info Cards -->
+  <div style="max-width: 500px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1;">
+    <div class="fasting-info" id="fastingInfo">
+      <!-- Filled by JS -->
+    </div>
+  </div>
 
-                    let totalFastingTime = akshamiTime.diff(syfyriTime, 'minutes');
-                    let elapsedTime = now.diff(syfyriTime, 'minutes');
-                    let percentage = Math.min((elapsedTime / totalFastingTime) * 100, 100);
+  <!-- Ramadan Overall Progress -->
+  <div style="max-width: 500px; margin: 30px auto 0; padding: 0 20px; position: relative; z-index: 1;">
+    <div class="countdown-card" style="border-color: rgba(212, 168, 67, 0.2); background: linear-gradient(135deg, rgba(212, 168, 67, 0.08), rgba(17, 22, 64, 0.9));">
+      <div class="countdown-label" style="color: var(--gold-light);">Progresi i përgjithshëm i Ramazanit</div>
+      <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 10px;">
+        <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.05); border-radius: 8px; overflow: hidden;">
+          <div id="ramadanProgress" style="height: 100%; background: linear-gradient(90deg, var(--gold-dark), var(--gold-light)); border-radius: 8px; transition: width 1.5s ease-in-out; width: 0%;"></div>
+        </div>
+        <span id="ramadanProgressText" style="color: var(--gold-light); font-weight: 600; font-size: 0.95rem; min-width: 40px;">0%</span>
+      </div>
+      <p id="ramadanDaysText" style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 10px;"></p>
+    </div>
+  </div>
 
-                    $("#progress").css("width", percentage + "%");
-                    $("#progress-text").text(Math.round(percentage) + "% Completed");
-                }
-            });
-        });
-    </script>
+  <!-- Footer -->
+  <footer class="footer-ramadan" style="margin-top: 50px;">
+    <div class="quote-wrapper">
+      <p class="dua" id="quoteArabic"></p>
+      <p class="dua-translation" id="quoteTranslation"></p>
+    </div>
+    <div class="ornament-divider" style="margin: 20px 0;"><span>&#10022;</span></div>
+    <p class="footer-text">e-Vaktia &copy; 2026 &mdash; Ramazani i bekuar</p>
+  </footer>
 
-    <style>
-        .progress-container {
-            width: 100%;
-            max-width: 400px;
-            margin: 20px auto;
-            text-align: center;
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  <script>
+    // --- Generate Stars ---
+    (function generateStars() {
+      var container = document.getElementById('starsContainer');
+      for (var i = 0; i < 100; i++) {
+        var star = document.createElement('div');
+        star.className = 'star';
+        var size = Math.random() * 3 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+        star.style.animationDelay = Math.random() * 5 + 's';
+        container.appendChild(star);
+      }
+    })();
+
+    var DATE_FORMAT = "DD.MM.YYYY";
+
+    $(document).ready(function () {
+      var today = moment().format(DATE_FORMAT);
+      var todayData = datas[today];
+      var allKeys = Object.keys(datas);
+      var totalDays = allKeys.length;
+
+      // Display date
+      document.getElementById('progressDate').textContent = 
+        moment().locale('sq').format('dddd, DD MMMM YYYY');
+
+      // --- Ramadan overall progress ---
+      var dayIndex = -1;
+      for (var i = 0; i < allKeys.length; i++) {
+        if (allKeys[i] === today) {
+          dayIndex = i;
+          break;
         }
-        .progress-bar {
-            width: 100%;
-            height: 20px;
-            background: #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 10px;
+      }
+
+      if (dayIndex >= 0) {
+        var ramadanPercent = Math.round(((dayIndex + 1) / totalDays) * 100);
+        setTimeout(function() {
+          document.getElementById('ramadanProgress').style.width = ramadanPercent + '%';
+          document.getElementById('ramadanProgressText').textContent = ramadanPercent + '%';
+        }, 500);
+        document.getElementById('ramadanDaysText').textContent = 
+          'Dita ' + (dayIndex + 1) + ' nga ' + totalDays + ' ditë';
+      } else {
+        document.getElementById('ramadanDaysText').textContent = 'Nuk jemi brenda Ramazanit';
+      }
+
+      // --- Today's fasting progress ---
+      if (todayData) {
+        var syfyriTime = moment(todayData.syfyri, "HH:mm");
+        var akshamiTime = moment(todayData.akshami, "HH:mm");
+
+        function updateProgress() {
+          var now = moment();
+          var totalMinutes = akshamiTime.diff(syfyriTime, 'minutes');
+          var elapsedMinutes = now.diff(syfyriTime, 'minutes');
+          var percentage = Math.max(0, Math.min((elapsedMinutes / totalMinutes) * 100, 100));
+          var remainingMinutes = Math.max(0, akshamiTime.diff(now, 'minutes'));
+          var remainingHours = Math.floor(remainingMinutes / 60);
+          var remainingMins = remainingMinutes % 60;
+
+          // Update circular progress
+          var circumference = 2 * Math.PI * 100; // 628
+          var offset = circumference - (percentage / 100) * circumference;
+          document.getElementById('progressCircle').style.strokeDashoffset = offset;
+
+          // Update percentage text
+          document.getElementById('percentNumber').textContent = Math.round(percentage);
+
+          // Update linear bar
+          document.getElementById('progress').style.width = percentage + '%';
+
+          // Update text
+          if (now.isBefore(syfyriTime)) {
+            document.getElementById('progress-text').textContent = 'Agjërimi nuk ka filluar ende';
+          } else if (percentage >= 100) {
+            document.getElementById('progress-text').textContent = 'Agjërimi ka përfunduar! Iftar Mubarak!';
+          } else {
+            document.getElementById('progress-text').textContent = 
+              Math.round(percentage) + '% - Kanë mbet ' + remainingHours + ' orë e ' + remainingMins + ' minuta';
+          }
+
+          // Update fasting info cards
+          var totalHours = Math.floor(totalMinutes / 60);
+          var totalMins = totalMinutes % 60;
+          var elapsedHours = Math.floor(Math.max(0, elapsedMinutes) / 60);
+          var elapsedMins = Math.max(0, elapsedMinutes) % 60;
+
+          document.getElementById('fastingInfo').innerHTML = 
+            '<div class="fasting-info-card">' +
+              '<div class="info-icon">🌙</div>' +
+              '<div class="info-label">Syfyri</div>' +
+              '<div class="info-value">' + todayData.syfyri + '</div>' +
+            '</div>' +
+            '<div class="fasting-info-card">' +
+              '<div class="info-icon">🌇</div>' +
+              '<div class="info-label">Iftari</div>' +
+              '<div class="info-value">' + todayData.akshami + '</div>' +
+            '</div>' +
+            '<div class="fasting-info-card">' +
+              '<div class="info-icon">⏱️</div>' +
+              '<div class="info-label">Gjithsej</div>' +
+              '<div class="info-value">' + totalHours + ':' + String(totalMins).padStart(2, '0') + '</div>' +
+            '</div>' +
+            '<div class="fasting-info-card">' +
+              '<div class="info-icon">⏳</div>' +
+              '<div class="info-label">Kanë mbet</div>' +
+              '<div class="info-value">' + (percentage >= 100 ? '0:00' : remainingHours + ':' + String(remainingMins).padStart(2, '0')) + '</div>' +
+            '</div>';
         }
-        .progress-fill {
-            height: 100%;
-            background: #4CAF50;
-            width: 0%;
-            transition: width 0.5s ease-in-out;
-        }
-    </style>
+
+        // Initial + interval
+        setTimeout(updateProgress, 300);
+        setInterval(updateProgress, 30000); // Update every 30 seconds
+
+      } else {
+        document.getElementById('progress-text').textContent = 'Nuk ka të dhëna për sot';
+        document.getElementById('fastingInfo').innerHTML = 
+          '<div style="grid-column: 1/-1; text-align: center; padding: 20px; color: var(--text-secondary);">' +
+          'Ramazani 2026: 19 Shkurt - 19 Mars</div>';
+      }
+    });
+
+    // --- Rotating Footer Quotes ---
+    (function() {
+      var quotes = [
+        { arabic: "\u0627\u0644\u0644\u0647\u0645 \u0625\u0646\u0643 \u0639\u0641\u0648 \u062a\u062d\u0628 \u0627\u0644\u0639\u0641\u0648 \u0641\u0627\u0639\u0641 \u0639\u0646\u064a", translation: "\"O Zoti im, Ti je Fal\u00ebs, e do faljen, prandaj m\u00eb fal mua.\" \u2014 Tirmidhi" },
+        { arabic: "\u0634\u0647\u0631 \u0631\u0645\u0636\u0627\u0646 \u0627\u0644\u0630\u064a \u0623\u0646\u0632\u0644 \u0641\u064a\u0647 \u0627\u0644\u0642\u0631\u0622\u0646", translation: "\"Muaji i Ramazanit, n\u00eb t\u00eb cilin \u00ebsht\u00eb zbritur Kur'ani.\" \u2014 Bekare 2:185" },
+        { arabic: "\u0648\u0625\u0630\u0627 \u0633\u0623\u0644\u0643 \u0639\u0628\u0627\u062f\u064a \u0639\u0646\u064a \u0641\u0625\u0646\u064a \u0642\u0631\u064a\u0628", translation: "\"Kur rob\u00ebrit e Mi t\u00eb pyesin p\u00ebr Mua, Un\u00eb jam afër.\" \u2014 Bekare 2:186" },
+        { arabic: "\u0625\u0646 \u0627\u0644\u0644\u0647 \u0645\u0639 \u0627\u0644\u0635\u0627\u0628\u0631\u064a\u0646", translation: "\"V\u00ebrtet\u00eb, All-llahu \u00ebsht\u00eb me durimtar\u00ebt.\" \u2014 Bekare 2:153" },
+        { arabic: "\u0631\u0628\u0646\u0627 \u0622\u062a\u0646\u0627 \u0641\u064a \u0627\u0644\u062f\u0646\u064a\u0627 \u062d\u0633\u0646\u0629 \u0648\u0641\u064a \u0627\u0644\u0622\u062e\u0631\u0629 \u062d\u0633\u0646\u0629", translation: "\"Zoti yn\u00eb, na jep t\u00eb mir\u00eb n\u00eb k\u00ebt\u00eb bot\u00eb dhe n\u00eb bot\u00ebn tjet\u00ebr.\" \u2014 Bekare 2:201" },
+        { arabic: "\u0641\u0627\u0630\u0643\u0631\u0648\u0646\u064a \u0623\u0630\u0643\u0631\u0643\u0645 \u0648\u0627\u0634\u0643\u0631\u0648\u0627 \u0644\u064a \u0648\u0644\u0627 \u062a\u0643\u0641\u0631\u0648\u0646", translation: "\"M\u00eb kujtoni Mua, q\u00eb Un\u00eb t'ju kujtoj juve.\" \u2014 Bekare 2:152" },
+        { arabic: "\u0645\u0646 \u0635\u0627\u0645 \u0631\u0645\u0636\u0627\u0646 \u0625\u064a\u0645\u0627\u0646\u0627 \u0648\u0627\u062d\u062a\u0633\u0627\u0628\u0627 \u063a\u0641\u0631 \u0644\u0647 \u0645\u0627 \u062a\u0642\u062f\u0645 \u0645\u0646 \u0630\u0646\u0628\u0647", translation: "\"Kush agj\u00ebron Ramazanin me besim, i falen m\u00ebkatet e m\u00ebparshme.\" \u2014 Buhari" },
+        { arabic: "\u0625\u0646 \u0645\u0639 \u0627\u0644\u0639\u0633\u0631 \u064a\u0633\u0631\u0627", translation: "\"V\u00ebrtet\u00eb, me v\u00ebshtir\u00ebsin\u00eb vjen leht\u00ebsimi.\" \u2014 Inshirah 94:6" },
+        { arabic: "\u0648\u0645\u0646 \u064a\u062a\u0648\u0643\u0644 \u0639\u0644\u0649 \u0627\u0644\u0644\u0647 \u0641\u0647\u0648 \u062d\u0633\u0628\u0647", translation: "\"Kush i mbshtetet All-llahut, Ai i mjafton atij.\" \u2014 Talak 65:3" },
+        { arabic: "\u0627\u0644\u0635\u0648\u0645 \u062c\u0646\u0629", translation: "\"Agj\u00ebrimi \u00ebsht\u00eb mburojë.\" \u2014 Buhari" },
+        { arabic: "\u0627\u062f\u0639\u0648\u0646\u064a \u0623\u0633\u062a\u062c\u0628 \u0644\u0643\u0645", translation: "\"M\u00eb lutu Mua, Un\u00eb ju p\u00ebrgjigjem.\" \u2014 Gafir 40:60" },
+        { arabic: "\u0648\u0644\u0627 \u062a\u064a\u0623\u0633\u0648\u0627 \u0645\u0646 \u0631\u0648\u062d \u0627\u0644\u0644\u0647", translation: "\"Mos e humbni shpres\u00ebn n\u00eb m\u00ebshir\u00ebn e All-llahut.\" \u2014 Jusuf 12:87" }
+      ];
+
+      var currentIndex = Math.floor(Math.random() * quotes.length);
+      var arabicEl = document.getElementById('quoteArabic');
+      var translationEl = document.getElementById('quoteTranslation');
+
+      function showQuote(index) {
+        arabicEl.textContent = quotes[index].arabic;
+        translationEl.textContent = quotes[index].translation;
+      }
+
+      function rotateQuote() {
+        arabicEl.classList.add('fade-out');
+        translationEl.classList.add('fade-out');
+
+        setTimeout(function() {
+          currentIndex = (currentIndex + 1) % quotes.length;
+          showQuote(currentIndex);
+          arabicEl.classList.remove('fade-out');
+          translationEl.classList.remove('fade-out');
+        }, 600);
+      }
+
+      showQuote(currentIndex);
+      setInterval(rotateQuote, 8000);
+    })();
+  </script>
 </body>
 </html>
